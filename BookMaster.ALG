@@ -1,14 +1,14 @@
-Algoritmo "SISTEMA DE GEST√O DE BOOKMASTER v1.0"
-// Disciplina  : LÛgica de ProgramaÁ„o II
+Algoritmo "SISTEMA DE GEST√ÉO DE BIBLIOT√âCAS - BOOKMASTER v1.0"
+// Disciplina  : L√≥gica de Programa√ß√£o II
 // Docente      : Moyo Kanivengidio
-// DescriÁ„o    : Gest„o de Livros com controle de emprÈstimos e remoÁ„o.
-// Programadores: 1.	ANT”NIO JOAQUIM BERNARDO; 2.	IGRA«A NZINGA S. KIAWETE;
-// 3. JO√O ISAÕAS TRUV√O; 4.	MARIA TUSSONGUA BENEDITH; 5.	NELSA NZAGE JO√O;
+// Descri√ß√£o    : Gest√£o de Livros com controle de empr√©stimos e remo√ß√£o.
+// Programadores: 1.	ANT√ìNIO JOAQUIM BERNARDO; 2.	IGRA√áA NZINGA S. KIAWETE;
+// 3. JO√ÉO ISA√çAS TRUV√ÉO; 4.	MARIA TUSSONGUA BENEDITH; 5.	NELSA NZAGE JO√ÉO;
 // Data atual  : 06/04/2026
 //__________________________________________________________________________________________________________________________________________________
 
 // =================================================================================================================================================
-// SE«√O DOS REGISTROS
+// SE√á√ÉO DOS REGISTROS
 // =================================================================================================================================================
 
 tipo livro = registro
@@ -20,8 +20,9 @@ fimregistro
 
 Var
    // =================================================================================================================================================
-   // SE«√O DE DECLARA«’ES DE VARI¡VEIS GLOBAIS
+   // SE√á√ÉO DE DECLARA√á√ïES DE VARI√ÅVEIS GLOBAIS
    // =================================================================================================================================================
+
    livros: vetor[1..100] de livro
    auxLivro: livro
    user, userCorreto, senha, senhaCorreta, buscar, confirma: caracter
@@ -30,11 +31,11 @@ Var
    codigoExiste, pesquisou, encontrou, enter: logico
 
    // =================================================================================================================================================
-   // SE«√O DE DECLARA«’ES DAS FUN«’ES E PROCEDIMENTOS
+   // SE√á√ÉO DE DECLARA√á√ïES DAS FUN√á√ïES E PROCEDIMENTOS
    // =================================================================================================================================================
 
 funcao codigoJaExiste(cod: inteiro): logico
-// FunÁ„o respons·vel por verificar o cÛdigo do livro a ser cadastrado
+// Fun√ß√£o respons√°vel por verificar o c√≥digo do livro a ser cadastrado
 var
    i: inteiro
    encontrou: logico
@@ -49,7 +50,7 @@ inicio
 fimfuncao
 
 funcao procurarLivro(cod: inteiro): inteiro
-// FunÁ„o respons·vel por procurar livros no vetor
+// Fun√ß√£o respons√°vel por procurar livros no vetor
 var
    i: inteiro
    posicaoEncontrada: inteiro
@@ -63,23 +64,72 @@ inicio
    retorne posicaoEncontrada
 fimfuncao
 
+procedimento exibirBoasVindas()
+// Procedimento respons√°vel por exibir uma sauda√ß√£o ao usu√°rio
+inicio
+   limpatela
+   escreval(" _________________________________________________________________________________________________________________")
+   escreval("|                                                                                                                 |")
+   escreval("|                                             BEM VINDO AO BOOKMASTER                                             |")
+   escreval("|                                                  Vers√£o 1.0                                                     |")
+   escreval("|_________________________________________________________________________________________________________________|")
+   escreval("|                                                                                                                 |")
+   escreval("|  O BookMaster √© um sistema completo para gest√£o de acervos liter√°rios, desenvolvido para facilitar              |")
+   escreval("|  o controle de cadastros, empr√©stimos, devolu√ß√µes e relat√≥rios estat√≠sticos de bibliotecas.                     |")
+   escreval("|                                                                                                                 |")
+   escreval("|  EQUIPE DE DESENVOLVIMENTO:                                                                                     |")
+   escreval("|  1. ANT√ìNIO JOAQUIM BERNARDO                                                                                    |")
+   escreval("|  2. IGRA√áA NZINGA DE SOUSA KIAWETE                                                                              |")
+   escreval("|  3. JO√ÉO ISA√çAS TRUV√ÉO                                                                                          |")
+   escreval("|  4. MARIA TUSSONGUA BENEDITH                                                                                    |")
+   escreval("|  5. NELSA NZAGE JO√ÉO                                                                                            |")
+   escreval("|_________________________________________________________________________________________________________________|")
+   escreval("")
+   escreva("| >> Pressione 'Enter' para iniciar o sistema...")
+   leia(enter)
+fimprocedimento
+
+procedimento exibirMenu()
+// Procedimento respons√°vel por exibir o menu Inicial
+inicio
+   limpatela
+   escreval(" _________________________________________________________________________________________________________________")
+   escreval("|                                           MENU DO BOOKMASTER                                                    |")
+   escreval("| 1-Cadastrar | 2-Listar | 3-Pesquisar | 4-Emprestar | 5-Devolver | 6-Ordenar | 7-Eliminar | 8-Relat√≥rio | 0-Sair |")
+   escreval("|_________________________________________________________________________________________________________________|")
+   escreva("| Op√ß√£o: ")
+fimprocedimento
+
 procedimento listarLivros(filtro: inteiro)
-// Procedimento respons·vel por listar os livros cadastrados com opÁıes de: 1-Todos, 2-Emprestados, 3-DisponÌveis
+// Procedimento respons√°vel por listar os livros cadastrados com op√ß√µes de: 1-Todos, 2-Emprestados, 3-Dispon√≠veis
 inicio
    escreval("|_________________________________________________________________________________________________________________")
-   escreval("| C”DIGO     | TÕTULO                                     | AUTOR                          |   ANO   | DISPONÕVEL |")
+   escreval("| C√ìDIGO     | T√çTULO                                     | AUTOR                          |   ANO   | DISPON√çVEL |")
    para i de 1 ate totalLivros faca
-      se (filtro = 1) ou ((filtro = 2) e (livros[i].disponivel = "N„o")) ou ((filtro = 3) e (livros[i].disponivel = "Sim")) entao
+      se (filtro = 1) ou ((filtro = 2) e (livros[i].disponivel = "N√£o")) ou ((filtro = 3) e (livros[i].disponivel = "Sim")) entao
          escreval("| ", livros[i].codigo:10, " | ", livros[i].titulo:42, " | ", livros[i].autor:30, " | ", livros[i].ano:7, " | ", livros[i].disponivel:10, " |")
-         se (livros[i].disponivel = "N„o") e (filtro <> 3) entao
+         se (livros[i].disponivel = "N√£o") e (filtro <> 3) entao
             escreval("| > Emprestado para: ", livros[i].nomeLeitor, " (Tel: ", livros[i].telefoneLeitor, ")", "(Mor: )", livros[i].moradaLeitor)
          fimse
       fimse
    fimpara
 fimprocedimento
 
+procedimento exibirLivroEncontrado()
+// Procedimento respos√°vel por exibir um livro pequisado
+inicio
+   escreval(" _________________________________________________________________________________________________________________")
+   escreval("|                                              [Livro Encontrado]                                                 |")
+   escreval("|-----------------------------------------------------------------------------------------------------------------|")
+   escreval("| C√ìDIGO     | T√çTULO                                     | AUTOR                          |   ANO   | DISPON√çVEL |")
+   escreval("| ", livros[i].codigo:10, " | ", livros[i].titulo:42, " | ", livros[i].autor:30, " | ", livros[i].ano:7, " | ", livros[i].disponivel:10, " |")
+   se (livros[i].disponivel = "N√£o") entao
+      escreval("| > Emprestado para: ", livros[i].nomeLeitor, " (Tel: ", livros[i].telefoneLeitor, ")", "(Mor: )", livros[i].moradaLeitor)
+   fimse
+fimprocedimento
+
 procedimento ordenarPorTitulo()
-// Procedimento respons·vel por ordenar por TÌtulo a lista dos livros cadastrados
+// Procedimento respons√°vel por ordenar por T√≠tulo a lista dos livros cadastrados
 inicio
    se totalLivros > 1 entao
       para i de 1 ate totalLivros - 1 faca
@@ -95,10 +145,12 @@ inicio
    senao
       escreval("| Quantidade de livros insuficiente para ordenar. |")
    fimse
+   escreval("| Enter para continuar")
+   leia(enter)
 fimprocedimento
 
 procedimento ordenarPorAutor()
-// Procedimento respons·vel por ordenar por Autor a lista dos livros cadastrados
+// Procedimento respons√°vel por ordenar por Autor a lista dos livros cadastrados
 inicio
    se totalLivros > 1 entao
       para i de 1 ate totalLivros - 1 faca
@@ -114,6 +166,8 @@ inicio
    senao
       escreval("| Quantidade de livros insuficiente para ordenar. |")
    fimse
+   escreval("| Enter para continuar")
+   leia(enter)
 fimprocedimento
 
 Inicio
@@ -122,42 +176,20 @@ Inicio
    // =================================================================================================================================================
 
    totalLivros <- 0
-   userCorreto <- "a"
-   senhaCorreta <- "a"
+   userCorreto <- "BookMaster"
+   senhaCorreta <- "bookmaster2026"
    tentativas <- 0
    tentativasMax <- 3
 
-   // =================================================================================================================================================
-   // INFORMA«’ES DO SISTEMA (TELA INICIAL)
-   // =================================================================================================================================================
-   limpatela
-   escreval(" _________________________________________________________________________________________________________________")
-   escreval("|                                                                                                                 |")
-   escreval("|                                             BEM VINDO AO BOOKMASTER                                             |")
-   escreval("|                                                  Vers„o 1.0                                                     |")
-   escreval("|_________________________________________________________________________________________________________________|")
-   escreval("|                                                                                                                 |")
-   escreval("|  O BookMaster È um sistema completo para gest„o de acervos liter·rios, desenvolvido para facilitar              |")
-   escreval("|  o controle de cadastros, emprÈstimos, devoluÁıes e relatÛrios estatÌsticos de bibliotecas.                     |")
-   escreval("|                                                                                                                 |")
-   escreval("|  EQUIPE DE DESENVOLVIMENTO:                                                                                     |")
-   escreval("|  1. ANT”NIO JOAQUIM BERNARDO                                                                                    |")
-   escreval("|  2. IGRA«A NZINGA DE SOUSA KIAWETE                                                                              |")
-   escreval("|  3. JO√O ISAÕAS TRUV√O                                                                                          |")
-   escreval("|  4. MARIA TUSSONGUA BENEDITH                                                                                    |")
-   escreval("|  5. NELSA NZAGE JO√O                                                                                            |")
-   escreval("|_________________________________________________________________________________________________________________|")
-   escreval("")
-   escreva("| >> Pressione ´Enterª para iniciar o sistema...")
-   leia(enter)
+   exibirBoasVindas() // procedimento de boas vindas
 
    enquanto (tentativas < tentativasMax) faca
-      // AutenticaÁ„o do sistema
+      // Autentica√ß√£o do sistema
       limpatela
       escreval(" _________________________________________________________________________________________________________________")
       escreval("|                                                 TELA DE LOGIN                                                   |")
       escreval("|_________________________________________________________________________________________________________________|")
-      escreval("| Digite o seu usu·rio: ")
+      escreval("| Digite o seu usu√°rio: ")
       escreva("|R: ")
       leia(user)
       escreval("| Digite a sua senha: ")
@@ -167,134 +199,115 @@ Inicio
       se (user = userCorreto) e (senha = senhaCorreta) entao
          escreval("|_________________________________________________________________________________________________________________")
          escreval("|                                                                                                                 |")
-         escreval("|                                                   OL¡, ", user:30, "                           |")
+         escreval("|                                                   OL√Å, ", user:30, "                           |")
          escreval("|_________________________________________________________________________________________________________________|")
-         escreva("| >> Pressione ´Enterª para continaur...")
+         escreva("| >> Pressione 'Enter' para continaur...")
          leia(enter)
+
          repita
-            // Menu Principal
-            limpatela
-            escreval(" _________________________________________________________________________________________________________________")
-            escreval("|                                           MENU DO BOOKMASTER                                                    |")
-            escreval("| 1-Cadastrar | 2-Listar | 3-Pesquisar | 4-Emprestar | 5-Devolver | 6-Ordenar | 7-Eliminar | 8-RelatÛrio | 0-Sair |")
-            escreval("|_________________________________________________________________________________________________________________|")
-            escreva("| OpÁ„o: ")
+            exibirMenu() // Menu Principal
             leia(op)
             escolha(op)
-
             caso 0
-               // O CASO 0, Simplesmente limpa para sair do laÁo
+               // O CASO 0, Simplesmente limpa para sair do la√ßo
                limpatela
 
             caso 1
-               // Bloco respons·vel por Cadastrar os livros
+               // Bloco respons√°vel por Cadastrar os livros
                limpatela
                escreval(" _________________________________________________________________________________________________________________")
                escreval("|                                          BOOKMASTER - CADASTRAR                                                 |")
                escreval("|_________________________________________________________________________________________________________________|")
                se totalLivros < 100 entao
-                  escreval("| Digite o cÛdigo do Livro: ")
+                  escreval("| Digite o c√≥digo do Livro: ")
                   escreva("|R: ")
                   leia(codigoNovo)
                   codigoExiste <- codigoJaExiste(codigoNovo)
-                  // VerificaÁ„o do cÛdigo do livro para saber se o mesmo j· foi utilizado no sistema
+                  // Verifica√ß√£o do c√≥digo do livro para saber se o mesmo j√° foi utilizado no sistema
                   enquanto codigoExiste faca
-                     escreval("| CÛdigo j· existe! Digite outro: ")
+                     escreval("| C√≥digo j√° existe! Digite outro: ")
                      escreva("|R: ")
                      leia(codigoNovo)
                      codigoExiste <- codigoJaExiste(codigoNovo)
                   fimenquanto
-                  // Se o cÛdigo ainda n„o foi utilizado o programa contina por aqui
+                  // Se o c√≥digo ainda n√£o foi utilizado o programa contina por aqui
                   totalLivros <- totalLivros + 1
                   livros[totalLivros].codigo <- codigoNovo
-                  escreval("| Digite o tÌtulo do Livro: ")
+                  escreval("| Digite o t√≠tulo do Livro: ")
                   escreva("|R: ")
                   leia(livros[totalLivros].titulo)
                   escreval("| Digite o autor do Livro: ")
                   escreva("|R: ")
                   leia(livros[totalLivros].autor)
-                  escreval("| Digite o ano de LanÁamento: ")
+                  escreval("| Digite o ano de Lan√ßamento: ")
                   escreva("|R: ")
                   leia(livros[totalLivros].ano)
                   livros[totalLivros].disponivel <- "Sim"
-                  escreval("| Livro Cadastrado com Sucesso! ´Enter para continuarª")
+                  escreval("| Livro Cadastrado com Sucesso! Enter para continuar")
                   leia(enter)
                senao
-                  escreval("| Limite atingido! ´Enter para voltarª")
+                  escreval("| Limite atingido! Enter para voltar")
                   leia(enter)
                fimse
 
             caso 2
-               // Bloco respons·vel por Listar todos os livros do sistema com filtros
+               // Bloco respons√°vel por Listar todos os livros do sistema com filtros
                repita
                   limpatela
                   escreval(" _________________________________________________________________________________________________________________")
                   escreval("|                                        BOOKMASTER - LISTA DOS LIVROS                                            |")
-                  escreval("|                        1- Todos  |  2- Emprestados  |  3- DisponÌveis  |  0- Voltar                             |")
+                  escreval("|                        1- Todos  |  2- Emprestados  |  3- Dispon√≠veis  |  0- Voltar                             |")
                   escreval("|_________________________________________________________________________________________________________________|")
-                  escreva("| OpÁ„o: ")
+                  escreva("| Op√ß√£o: ")
                   leia(subOp)
                   se (subOp <> 0) entao
                      se (totalLivros = 0) entao
                         escreval("| Nenhum livro cadastrado!")
+
                      senao
                         listarLivros(subOp)
                      fimse
                      escreval("|-----------------------------------------------------------------------------------------------------------------|")
-                     escreval("| ´Enter para continuarª")
+                     escreval("| Enter para continuar")
                      leia(enter)
                   fimse
                ate subOp = 0
 
             caso 3
-               // Bloco respons·vel por Pesquisar livros (CÛdigo, TÌtulo ou Autor)
+               // Bloco respons√°vel por Pesquisar livros (C√≥digo, T√≠tulo ou Autor)
                repita
                   limpatela
                   escreval(" _________________________________________________________________________________________________________________")
                   escreval("|                                             BOOKMASTER - PESQUISAR                                              |")
-                  escreval("|                                     1-CÛdigo | 2-TÌtulo ou Autor | 0-Voltar                                     |")
+                  escreval("|                                     1-C√≥digo | 2-T√≠tulo ou Autor | 0-Voltar                                     |")
                   escreval("|_________________________________________________________________________________________________________________|")
                   se (totalLivros = 0) entao
                      escreval("| Nenhum livro cadastrado!")
                      leia(enter)
                      subOp <- 0
                   senao
-                     escreva("| OpÁ„o: ")
+                     escreva("| Op√ß√£o: ")
                      leia(subOp)
                      encontrou <- falso
                      escolha subOp
                      caso 1
-                        // Pesquisa por CÛdigo
-                        escreva("| CÛdigo: ")
+                        // Pesquisa por C√≥digo
+                        escreva("| C√≥digo: ")
                         leia(codigoBusca)
                         para i de 1 ate totalLivros faca
                            se livros[i].codigo = codigoBusca entao
                               encontrou <- verdadeiro
-                              escreval(" _________________________________________________________________________________________________________________")
-                              escreval("|                                              [Livro Encontrado]                                                 |")
-                              escreval("|-----------------------------------------------------------------------------------------------------------------|")
-                              escreval("| C”DIGO     | TÕTULO                                     | AUTOR                          |   ANO   | DISPONÕVEL |")
-                              escreval("| ", livros[i].codigo:10, " | ", livros[i].titulo:42, " | ", livros[i].autor:30, " | ", livros[i].ano:7, " | ", livros[i].disponivel:10, " |")
-                              se (livros[i].disponivel = "N„o") entao
-                                 escreval("| > Emprestado para: ", livros[i].nomeLeitor, " (Tel: ", livros[i].telefoneLeitor, ")", "(Mor: )", livros[i].moradaLeitor)
-                              fimse
+                              exibirLivroEncontrado() // Procedimento para exibir um livro
                            fimse
                         fimpara
                      caso 2
-                        // Pesquisa por TÌtulo ou Autor
-                        escreva("| TÌtulo ou Autor: ")
+                        // Pesquisa por T√≠tulo ou Autor
+                        escreva("| T√≠tulo ou Autor: ")
                         leia(buscar)
                         para i de 1 ate totalLivros faca
                            se (livros[i].titulo = buscar) ou (livros[i].autor = buscar) entao
                               encontrou <- verdadeiro
-                              escreval(" _________________________________________________________________________________________________________________")
-                              escreval("|                                              [Livro Encontrado]                                                 |")
-                              escreval("|-----------------------------------------------------------------------------------------------------------------|")
-                              escreval("| C”DIGO     | TÕTULO                                     | AUTOR                          |   ANO   | DISPONÕVEL |")
-                              escreval("| ", livros[i].codigo:10, " | ", livros[i].titulo:42, " | ", livros[i].autor:30, " | ", livros[i].ano:7, " | ", livros[i].disponivel:10, " |")
-                              se (livros[i].disponivel = "N„o") entao
-                                 escreval("| > Emprestado para: ", livros[i].nomeLeitor, " (Tel: ", livros[i].telefoneLeitor, ")", "(Mor: )", livros[i].moradaLeitor)
-                              fimse
+                              exibirLivroEncontrado() // Procedimento para exibir um livro
                            fimse
                         fimpara
                      fimescolha
@@ -303,19 +316,19 @@ Inicio
                            escreval("| Nenhum resultado encontrado!")
                         fimse
                         escreval("|_________________________________________________________________________________________________________________|")
-                        escreval("|     ´Enter para continuarª     ")
+                        escreval("|     Enter para continuar     ")
                         leia(enter)
                      fimse
                   fimse
                ate subOp = 0
 
             caso 4
-               // Bloco respons·vel por Emprestar livros, usuando todas as informaÁıes do procedimento criado em cima
+               // Bloco respons√°vel por Emprestar livros, usuando todas as informa√ß√µes do procedimento criado em cima
                limpatela
                escreval(" _________________________________________________________________________________________________________________")
                escreval("|                                          BOOKMASTER - EMPRESTAR LIVRO                                           |")
                escreval("|_________________________________________________________________________________________________________________|")
-               escreval("| CÛdigo do livro: ")
+               escreval("| C√≥digo do livro: ")
                escreva("|R: ")
                leia(codigoBusca)
                encontrou <- falso
@@ -333,74 +346,74 @@ Inicio
                      escreval("| Digite a Morada: ")
                      escreva("|R: ")
                      leia(livros[i].moradaLeitor)
-                     livros[i].disponivel <- "N„o"
-                     escreval("| EmprÈstimo realizado com sucesso!")
+                     livros[i].disponivel <- "N√£o"
+                     escreval("| Empr√©stimo realizado com sucesso!")
                   senao
-                     escreval("| Erro: Este livro j· est· emprestado!")
+                     escreval("| Erro: Este livro j√° est√° emprestado!")
                   fimse
                fimse
                se nao encontrou entao
-                  escreval("| Erro: CÛdigo n„o encontrado!")
+                  escreval("| Erro: C√≥digo n√£o encontrado!")
                fimse
+               escreval("|     Enter para continuar")
                leia(enter)
 
             caso 5
-               // Bloco respons·vel por Devolver livros; sÛ se ele foi emprestado
+               // Bloco respons√°vel por Devolver livros; s√≥ se ele foi emprestado
                limpatela
                escreval(" _________________________________________________________________________________________________________________")
                escreval("|                                           BOOKMASTER - DEVOLVER LIVRO                                           |")
                escreval("|_________________________________________________________________________________________________________________|")
-               escreval("| CÛdigo do livro: ")
+               escreval("| C√≥digo do livro: ")
                escreva("|R: ")
                leia(codigoBusca)
                encontrou <- falso
                i <- procurarLivro(codigoBusca)
                se i <> 0 entao
                   encontrou <- verdadeiro
-                  se livros[i].disponivel = "N„o" entao
+                  se livros[i].disponivel = "N√£o" entao
                      livros[i].disponivel <- "Sim"
                      livros[i].nomeLeitor <- ""
                      livros[i].telefoneLeitor <- ""
                      livros[i].moradaLeitor <- ""
-                     escreval("| DevoluÁ„o concluÌda! Dados do leitor removidos.")
+                     escreval("| Devolu√ß√£o conclu√≠da! Dados do leitor removidos.")
                   senao
-                     escreval("| Aviso: Este livro j· est· disponÌvel!")
+                     escreval("| Aviso: Este livro j√° est√° dispon√≠vel!")
                   fimse
                fimse
                se nao encontrou entao
-                  escreval("| Erro: CÛdigo n„o encontrado!")
+                  escreval("| Erro: C√≥digo n√£o encontrado!")
                fimse
+               escreval("|     Enter para continuar")
                leia(enter)
 
             caso 6
-               // Bloco respons·vel por Ordenar a lista de livros, com filtros (TÌtulo e Autor)
+               // Bloco respons√°vel por Ordenar a lista de livros, com filtros (T√≠tulo e Autor)
                repita
                   limpatela
                   escreval(" _________________________________________________________________________________________________________________")
                   escreval("|                                           BOOKMASTER - ORDENAR LIVROS                                           |")
-                  escreval("|                                          1-TÌtulo | 2-Autor | 0-Voltar                                          |")
+                  escreval("|                                          1-T√≠tulo | 2-Autor | 0-Voltar                                          |")
                   escreval("|_________________________________________________________________________________________________________________|")
-                  escreva("| OpÁ„o: ")
+                  escreva("| Op√ß√£o: ")
                   leia(subOp)
                   escolha subOp
                   caso 1
-                     // Ordenar livros por tÌtulo, usando o procedimento ordenarPorTitulo criado acima
+                     // Ordenar livros por t√≠tulo, usando o procedimento ordenarPorTitulo criado acima
                      ordenarPorTitulo()
-                     leia(enter)
                   caso 2
                      // Ordenar livros por autor, usando o procedimento ordenarPorAutorr criado acima
                      ordenarPorAutor()
-                     leia(enter)
                   fimescolha
                ate subOp = 0
 
             caso 7
-               // Bloco respons·vel por Eliminar um livro, se existir, usando a verificaÁ„o do cÛdigo e a confirmaÁ„o S/N
+               // Bloco respons√°vel por Eliminar um livro, se existir, usando a verifica√ß√£o do c√≥digo e a confirma√ß√£o S/N
                limpatela
                escreval(" _________________________________________________________________________________________________________________")
                escreval("|                                             BOOKMASTER - ELIMINAR                                               |")
                escreval("|_________________________________________________________________________________________________________________|")
-               escreval("| CÛdigo do livro para eliminar: ")
+               escreval("| C√≥digo do livro para eliminar: ")
                escreva("|R: ")
                leia(codigoBusca)
                encontrou <- falso
@@ -415,26 +428,26 @@ Inicio
                   leia(confirma)
 
                   se (confirma = "S") ou (confirma = "s") entao
-                     // Puxa todos os livros seguintes uma posiÁ„o para tr·s
+                     // Puxa todos os livros seguintes uma posi√ß√£o para tr√°s
                      para j de i ate totalLivros - 1 faca
                         livros[j] <- livros[j+1]
                      fimpara
                      totalLivros <- totalLivros - 1
                      escreval("| Livro eliminado com sucesso!")
                   senao
-                     escreval("| OperaÁ„o cancelada.")
+                     escreval("| Opera√ß√£o cancelada.")
                   fimse
                senao
-                  escreval("| Erro: Livro n„o encontrado!")
+                  escreval("| Erro: Livro n√£o encontrado!")
                fimse
-               escreval("|  ´Enter para voltarª  |")
+               escreval("|  Enter para voltar  |")
                leia(enter)
 
             caso 8
-               // Bloco respons·vel por Gerar um pequeno relatÛrio
+               // Bloco respons√°vel por Gerar um pequeno relat√≥rio
                limpatela
                escreval(" _________________________________________________________________________________________________________________")
-               escreval("|                                          BOOKMASTER - RELAT”RIO GERAL                                           |")
+               escreval("|                                          BOOKMASTER - RELAT√ìRIO GERAL                                           |")
                escreval("|_________________________________________________________________________________________________________________|")
                livrosDispo <- 0
                livrosEmpre <- 0
@@ -447,33 +460,33 @@ Inicio
                fimpara
                escreval("| Livros Cadastrados: ", totalLivros)
                escreval("| Livros Emprestados: ", livrosEmpre)
-               escreval("| Livros DisponÌveis: ", livrosDispo)
-               escreval("|-----------------------|")
-               escreval("|  ´Enter para voltarª  |")
+               escreval("| Livros Dispon√≠veis: ", livrosDispo)
+               escreval("|-------------------------|")
+               escreval("|   Enter para voltar     |")
                leia(enter)
 
             outrocaso
                se (op <> 0) entao
-                  escreval("| OpÁ„o inv·lida ´Enter para continuarª |")
+                  escreval("| Op√ß√£o inv√°lida Enter para continuar |")
                   leia(enter)
                fimse
                limpatela
             fimescolha
          ate (op = 0)
-         // Mensagem de saÌda
+         // Mensagem de sa√≠da
          limpatela
          escreval(" _________________________________________________________________________________________________________________")
          escreval("|                                                                                                                 |")
-         escreval("|                                  OBRIGADO POR USAR O BOOKMASTER!                                                |")
-         escreval("|                                             AtÈ logo, ", user:30, "                            |")
+         escreval("|                                       OBRIGADO POR USAR O BOOKMASTER!                                           |")
+         escreval("|                                            At√© logo, ", user:30, "                             |")
          escreval("|_________________________________________________________________________________________________________________|")
-         // Para encerrar o loop forÁamos o fim com as tentativas
+         // Para encerrar o loop for√ßamos o fim com as tentativas
          tentativas <- tentativasMax
       senao
-         // Bloco de erro de autenticaÁ„o
+         // Bloco de erro de autentica√ß√£o
          tentativas <- tentativas + 1
          se tentativas < tentativasMax entao
-            escreval("| Credenciais inv·lidas! Tentativas restantes: ", tentativasMax - tentativas, " ´Enter para continuarª")
+            escreval("| Credenciais inv√°lidas! Tentativas restantes: ", tentativasMax - tentativas, " Enter para continuar")
             leia(enter)
          senao
             escreval(" _________________________________________________")
